@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Play</title>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var x = 10,
+				y = 15;
+			$('a.tooltip').mouseover(function(e){
+				this.myTitle = this.title;
+				this.title = '';
+				var tooltip = '<div id="tooltip">'+this.myTitle+'</div>';
+				$('body').append(tooltip);
+				$('#tooltip').css({
+						'top' : (e.pageY+y) + 'px',
+						'left' : (e.pageX+x) + 'px'
+					}).show();
+			}).mouseout(function(){
+				this.title = this.myTitle;
+				$('#tooltip').remove();
+			}).mousemove(function(e){
+				$('#tooltip').css({
+						'top' : (e.pageY+y) + 'px',
+						'left' : (e.pageX+x) + 'px'
+					});
+			});
+		});
+	</script>
+</head>
+<body>
+	<style type="text/css">
+		#tooltip {
+			position:absolute;
+			padding:5px;
+			border:1px solid #ddd;
+			background:#fff;
+		}
+	</style>
+	<h1>This is jQuery Play.</h1>
+	
+	<p><a href="#" class="tooltip" title="这是我的超链接提示">这是一个超链接</a></p>
+</body>
+</html>
